@@ -1,5 +1,8 @@
 package com.lzc.smallbyuser.controller;
 
+import com.lzc.smallbyuser.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -9,5 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class UserLoginController {
+    @Autowired
+    UserService userService;
+
+    @RequestMapping("/test01")
+    public String test01(){
+       return userService.test01();
+    }
 
 }

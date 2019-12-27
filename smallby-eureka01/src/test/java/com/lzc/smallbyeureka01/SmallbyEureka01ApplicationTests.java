@@ -1,11 +1,11 @@
-package com.lzc.smallbyuser;
+package com.lzc.smallbyeureka01;
 
 
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SmallbyUserApplicationTests {
+class SmallbyEureka01ApplicationTests {
 
     @Test
     void contextLoads() {
