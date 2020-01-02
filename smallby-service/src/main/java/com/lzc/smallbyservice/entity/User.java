@@ -35,6 +35,8 @@ public class User implements Serializable {
 
     private String remark3;
 
+    private String password;
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -205,6 +207,20 @@ public class User implements Serializable {
         this.remark3 = remark3;
     }
 
+    /**
+     * @return password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -223,6 +239,7 @@ public class User implements Serializable {
         sb.append(", remark1=").append(remark1);
         sb.append(", remark2=").append(remark2);
         sb.append(", remark3=").append(remark3);
+        sb.append(", password=").append(password);
         sb.append("]");
         return sb.toString();
     }

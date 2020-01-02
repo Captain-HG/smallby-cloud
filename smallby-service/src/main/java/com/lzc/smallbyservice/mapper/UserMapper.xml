@@ -17,6 +17,30 @@
     <result column="remark1" jdbcType="VARCHAR" property="remark1" />
     <result column="remark2" jdbcType="VARCHAR" property="remark2" />
     <result column="remark3" jdbcType="VARCHAR" property="remark3" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
   </resultMap>
 
+
+  <resultMap id="loginMap" type="java.util.Map">
+    <id column="u_id" jdbcType="BIGINT" property="uId" />
+    <result column="u_id" jdbcType="VARCHAR" property="uName" />
+    <result column="vx_id" jdbcType="VARCHAR" property="vxId" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="create_time" jdbcType="INTEGER" property="createTime" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="update_time" jdbcType="INTEGER" property="updateTime" />
+    <result column="login_time" jdbcType="INTEGER" property="loginTime" />
+  </resultMap>
+
+  <select id="selectByPhoneAndPwd" resultMap="loginMap">
+   select u_id,u_id,vx_id,status,create_time,phone,update_time,login_time
+   from user
+   where phone=#{phone} and password={password}
+  </select>
+
+  <select id="selectByWxId" resultMap="loginMap">
+   select u_id,u_id,vx_id,status,create_time,phone,update_time,login_time
+   from user
+   where vx_id=#{vxId}
+  </select>
 </mapper>

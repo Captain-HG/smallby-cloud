@@ -19,4 +19,59 @@
     <result column="remark2" jdbcType="VARCHAR" property="remark2" />
     <result column="remark3" jdbcType="VARCHAR" property="remark3" />
   </resultMap>
+
+  <select id="selectByCondition" resultMap="BaseResultMap">
+    select p_id,p_name,p_detail,p_price,status,category,sales,level,create_time,update_time
+    from product
+    where
+       1=1
+       <if test="pId!=null and pId!=''">
+        and p_id=#{pId}
+       </if>
+       <if test="pName!=null and pName!=''">
+         and p_name=#{pName}
+       </if>
+
+  </select>
+
+  <select id="selectByCondition" resultMap="BaseResultMap">
+      select p_id,p_name,p_detail,p_price,status,category,sales,level,create_time,update_time
+      from product
+      where
+      1=1
+      <if test="status!=null and status!=''">
+          and status=#{status}
+      </if>
+      <if test="category!=null and category!=''">
+          and category=#{category}
+      </if>
+      <if test="level!=null and level!=''">
+          and level=#{level}
+      </if>
+  </select>
+
+   <select id="orderByCondition" resultMap="BaseResultMap">
+        select p_id,p_name,p_detail,p_price,status,category,sales,level,create_time,update_time
+      from product
+      where
+       status="0"
+       order by
+       <choose>
+           <when test="orderfield == 'createTime' and orderdecs='DESC' ">
+               create_time DESC
+           </when>
+           <when test="orderfield == 'createTime' and orderdecs='ASC' ">
+               create_time ASC
+           </when>
+           <when test="orderfield == 'sales' and orderdecs='DESC' ">
+               sales DESC
+           </when>
+           <when test="orderfield == 'sales' and orderdecs='ASC' ">
+               sales ASC
+           </when>
+           <otherwise>
+               p_id DESC
+           </otherwise>
+       </choose>
+   </select>
 </mapper>

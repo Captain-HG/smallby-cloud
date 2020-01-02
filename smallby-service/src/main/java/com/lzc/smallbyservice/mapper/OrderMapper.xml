@@ -17,4 +17,10 @@
     <result column="total_price" jdbcType="DECIMAL" property="totalPrice" />
     <result column="total_number" jdbcType="INTEGER" property="totalNumber" />
   </resultMap>
+
+  <select id="selectByUId" resultMap="BaseResultMap">
+    select o_id,u_id,p_ids,status,create_time,order_tiime,total_price,total_number
+    from order
+    where u_id=#{uId}
+  </select>
 </mapper>

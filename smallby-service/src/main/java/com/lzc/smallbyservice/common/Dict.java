@@ -7,11 +7,27 @@ package com.lzc.smallbyservice.common;
  */
 public class Dict {
     /**
-     * user的session
+     * 产品名称
      */
-    public static final String SESSION_USER = "user";
+    public static final String PNAME="pName";
     /**
-     * 登陆成功
+     * 产品id
      */
-    public static final String LOGIN_SUCCESS = "登陆成功";
+    public static final String PID="pId";
+    /**
+     * 用户id
+     */
+    public static final String UID ="uId";
+    /**
+     * 订单id
+     */
+    public static final String OID ="oId";
+    /**
+     * 渠道标识
+     */
+    public static final String CHANNEL = "channel";
+    /**
+     * 微信ID
+     */
+    public static final String WXID = "vxId";
 }

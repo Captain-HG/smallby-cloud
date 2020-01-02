@@ -166,7 +166,7 @@ public class IdWorker {
 
 
     public static void main(String[] args) {
-        IdWorker idWorker = new IdWorker(1, 1);
+        IdWorker idWorker = new IdWorker();
         System.out.println(idWorker.nextId());
 
 

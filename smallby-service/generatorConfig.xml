@@ -52,14 +52,14 @@
 
         <!--<generatedKey column="c_id" sqlStatement="Mysql" identity="true" />-->
         </table>
-        <table tableName="product" domainObjectName="Product">
+<!--        <table tableName="product" domainObjectName="Product">-->
 
-            <!--<generatedKey column="c_id" sqlStatement="Mysql" identity="true" />-->
-        </table>
-        <table tableName="order" domainObjectName="Order">
+<!--            &lt;!&ndash;<generatedKey column="c_id" sqlStatement="Mysql" identity="true" />&ndash;&gt;-->
+<!--        </table>-->
+<!--        <table tableName="order" domainObjectName="Order">-->
 
-            <!--<generatedKey column="c_id" sqlStatement="Mysql" identity="true" />-->
-        </table>
+<!--            &lt;!&ndash;<generatedKey column="c_id" sqlStatement="Mysql" identity="true" />&ndash;&gt;-->
+<!--        </table>-->
         <!--<table tableName="user" domainObjectName="User">-->
 
             <!--&lt;!&ndash;<generatedKey column="c_id" sqlStatement="Mysql" identity="true" />&ndash;&gt;-->

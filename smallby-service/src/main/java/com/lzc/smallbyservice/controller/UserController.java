@@ -1,9 +1,15 @@
 package com.lzc.smallbyservice.controller;
 
+import com.lzc.smallbyservice.common.Constants;
+import com.lzc.smallbyservice.common.Dict;
 import com.lzc.smallbyservice.service.UserService;
+import com.lzc.smallbyservice.utils.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @AUTHOR HG-captain
@@ -19,4 +25,39 @@ public class UserController {
    public String test01(){
        return "mmp";
    }
+
+    /**
+     * 登录
+     * 1、wx登录，查看wxId是否存在用户表中，有则直接登录成功，无则需要获取手机号
+     * 2、手机号登录（尚无此功能）
+     * @param map
+     * @return
+     */
+   @RequestMapping("/login")
+   public String  userLogin(Map map) {
+       String channel = (String) map.get(Dict.CHANNEL);
+       Map queryMap = new HashMap();
+
+       if (!Util.isNull(channel)) {
+           if (channel.equals(Constants.LOGINCHANEL_WX)) {
+               if (!Util.isNull(map.get(Dict.WXID))) {
+                   queryMap.put(Dict.WXID, map.get(Dict.WXID));
+                   Map result = userService.selectByWxId(queryMap);
+                   /**
+                    * 为空时需要注册手机号
+                    */
+                   if (Util.isNull(result)) {
+                       return "注册手机号";
+                   } else {
+                       return "success";
+                   }
+               }
+           }
+       }
+           return null;
+
+   }
+
+
+
 }

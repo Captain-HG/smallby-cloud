@@ -20,5 +20,5 @@ public class ResultVO<T> {
     /**
      * 返回状态码
      */
-    private Integer code;
+    private String code;
 }
