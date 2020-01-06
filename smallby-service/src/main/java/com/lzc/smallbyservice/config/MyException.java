@@ -67,7 +67,14 @@ public class MyException extends RuntimeException {
         super(detailedMessage);
         this.errorCode = errorCode;
     }
-
+    /**
+     * 构造通用异常
+     * @param errorCode 错误码
+     */
+    public MyException(final ErrorCode errorCode) {
+        super(errorCode.getDescription());
+        this.errorCode = errorCode;
+    }
 
 //    /**
 //     * 构造通用异常

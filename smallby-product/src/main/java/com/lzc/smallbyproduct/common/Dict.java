@@ -1,4 +1,4 @@
-package com.lzc.smallbyservice.common;
+package com.lzc.smallbyproduct.common;
 
 /**
  * @AUTHOR HG-captain
@@ -31,7 +31,7 @@ public class Dict {
      */
     public static final String WXID = "vxId";
     /**
-     * 微服务名
+     * 服务名
      */
     public static final String APPNAME = "appName";
 }

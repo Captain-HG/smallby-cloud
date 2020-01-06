@@ -1,4 +1,4 @@
-package com.lzc.smallbyservice.common;
+package com.lzc.smallbyproduct.common;
 
 /**
  * @AUTHOR HG-captain

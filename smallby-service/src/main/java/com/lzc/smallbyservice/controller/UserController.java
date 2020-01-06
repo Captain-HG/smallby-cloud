@@ -2,9 +2,13 @@ package com.lzc.smallbyservice.controller;
 
 import com.lzc.smallbyservice.common.Constants;
 import com.lzc.smallbyservice.common.Dict;
+import com.lzc.smallbyservice.config.ErrorCode;
+import com.lzc.smallbyservice.config.MyException;
 import com.lzc.smallbyservice.service.UserService;
 import com.lzc.smallbyservice.utils.Util;
+import com.lzc.smallbyservice.vo.ErrCodeEn;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +27,8 @@ public class UserController {
     private UserService userService;
    @RequestMapping("/test01")
    public String test01(){
-       return "mmp";
+
+       throw new MyException(ErrCodeEn.E_404);
    }
 
     /**
@@ -34,7 +39,7 @@ public class UserController {
      * @return
      */
    @RequestMapping("/login")
-   public String  userLogin(Map map) {
+   public String  userLogin(@RequestBody Map map) {
        String channel = (String) map.get(Dict.CHANNEL);
        Map queryMap = new HashMap();
 

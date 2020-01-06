@@ -20,7 +20,21 @@
     <result column="remark3" jdbcType="VARCHAR" property="remark3" />
   </resultMap>
 
-  <select id="selectByCondition" resultMap="BaseResultMap">
+    <resultMap id="queryResultMap" type="java.util.Map">
+        <id column="p_id" jdbcType="BIGINT" property="pId" />
+        <result column="p_name" jdbcType="VARCHAR" property="pName" />
+        <result column="p_detail" jdbcType="VARCHAR" property="pDetail" />
+        <result column="p_price" jdbcType="DECIMAL" property="pPrice" />
+        <result column="status" jdbcType="CHAR" property="status" />
+        <result column="category" jdbcType="CHAR" property="category" />
+        <result column="sales" jdbcType="INTEGER" property="sales" />
+        <result column="level" jdbcType="CHAR" property="level" />
+        <result column="create_time" jdbcType="INTEGER" property="createTime" />
+        <result column="update_time" jdbcType="INTEGER" property="updateTime" />
+
+    </resultMap>
+
+  <select id="selectByUnique" resultMap="BaseResultMap">
     select p_id,p_name,p_detail,p_price,status,category,sales,level,create_time,update_time
     from product
     where
@@ -34,7 +48,7 @@
 
   </select>
 
-  <select id="selectByCondition" resultMap="BaseResultMap">
+  <select id="selectByCondition" resultMap="queryResultMap">
       select p_id,p_name,p_detail,p_price,status,category,sales,level,create_time,update_time
       from product
       where
@@ -50,23 +64,23 @@
       </if>
   </select>
 
-   <select id="orderByCondition" resultMap="BaseResultMap">
+   <select id="orderByCondition" resultMap="queryResultMap">
         select p_id,p_name,p_detail,p_price,status,category,sales,level,create_time,update_time
       from product
       where
        status="0"
        order by
        <choose>
-           <when test="orderfield == 'createTime' and orderdecs='DESC' ">
+           <when test="orderfield == 'createTime' and orderdecs == 'DESC' ">
                create_time DESC
            </when>
-           <when test="orderfield == 'createTime' and orderdecs='ASC' ">
+           <when test="orderfield == 'createTime' and orderdecs == 'AS  C' ">
                create_time ASC
            </when>
-           <when test="orderfield == 'sales' and orderdecs='DESC' ">
+           <when test="orderfield == 'sales' and orderdecs == 'DESC' ">
                sales DESC
            </when>
-           <when test="orderfield == 'sales' and orderdecs='ASC' ">
+           <when test="orderfield == 'sales' and orderdecs == 'ASC' ">
                sales ASC
            </when>
            <otherwise>

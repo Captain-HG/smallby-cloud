@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.*;
 
-public class Order implements Serializable {
+public class SmOrder implements Serializable {
     @Id
     @Column(name = "o_id")
     private Long oId;

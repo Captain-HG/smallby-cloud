@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lzc.smallbyservice.mapper.OrderMapper">
-  <resultMap id="BaseResultMap" type="com.lzc.smallbyservice.entity.Order">
+<mapper namespace="com.lzc.smallbyservice.mapper.SmOrderMapper">
+  <resultMap id="BaseResultMap" type="com.lzc.smallbyservice.entity.SmOrder">
     <!--
       WARNING - @mbg.generated
     -->
@@ -20,7 +20,7 @@
 
   <select id="selectByUId" resultMap="BaseResultMap">
     select o_id,u_id,p_ids,status,create_time,order_tiime,total_price,total_number
-    from order
+    from smorder
     where u_id=#{uId}
   </select>
 </mapper>
