@@ -1,6 +1,7 @@
 package com.lzc.smallbyservice.config;
 
 import com.lzc.smallbyservice.common.Dict;
+import com.lzc.smallbyservice.utils.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,7 +21,7 @@ import java.util.List;
 public class AppInterceptor implements HandlerInterceptor {
     private static final Logger log = LoggerFactory.getLogger(AppInterceptor.class);
     @Value("${appNames}")
-    private List appNames;
+    private String appNames;
     /**
      * 调用前的执行
      * @param request
@@ -32,9 +33,15 @@ public class AppInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String appName = request.getHeader(Dict.APPNAME);
+        if(Util.isNull(appName)){
+            return false;
+        }
         // 判断是否有权限访问service
-        if(appNames.contains(appName)){
-            return true;
+         String[] apps = appNames.split(",");
+        for(int i=0;i<=apps.length;i++){
+            if(appName.equals(apps[i])){
+                return true;
+            }
         }
         return false;
     }

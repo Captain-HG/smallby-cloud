@@ -1,8 +1,6 @@
 package com.lzc.smallbyservice.config;
 
 
-import com.lzc.smallbyservice.vo.ResultVO;
-
 /**
  * @AUTHOR HG-captain
  * @Data 2019/12/30

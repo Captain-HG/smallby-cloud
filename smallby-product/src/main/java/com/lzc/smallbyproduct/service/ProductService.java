@@ -1,6 +1,7 @@
 package com.lzc.smallbyproduct.service;
 
 import com.lzc.smallbyproduct.config.FeginConfig;
+import com.lzc.smallbyproduct.service.hystrix.ProductHystrix;
 import feign.Headers;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ import java.util.Map;
  * @Data 2020/1/6
  * @Description
  */
-@FeignClient(value = "smallby-service",configuration = FeginConfig.class)
+@FeignClient(value = "smallby-service",configuration = FeginConfig.class,fallback = ProductHystrix.class)
 public interface ProductService {
     /**
      * 查询所有商品

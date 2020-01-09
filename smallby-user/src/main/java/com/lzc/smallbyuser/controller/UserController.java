@@ -11,13 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
  * @Description 用于处理登录的web层
  */
 @RestController
-public class UserLoginController {
+@RequestMapping("/user")
+public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping("/test01")
-    public String test01(){
-       return userService.test01();
-    }
+
 
 }
