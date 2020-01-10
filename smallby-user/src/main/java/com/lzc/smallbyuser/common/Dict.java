@@ -34,4 +34,12 @@ public class Dict {
      * 服务名
      */
     public static final String APPNAME = "appName";
+    /**
+     * token认证标识
+     */
+    public static final String AUTHORIZATION = "Authorization";
+    /**
+     * token
+     */
+    public static final String TOKEN = "token";
 }

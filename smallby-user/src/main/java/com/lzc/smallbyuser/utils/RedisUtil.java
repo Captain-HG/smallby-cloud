@@ -1,5 +1,8 @@
 package com.lzc.smallbyuser.utils;
 
+import com.lzc.smallbyuser.common.Dict;
+import com.lzc.smallbyuser.common.ErrorDict;
+import com.lzc.smallbyuser.config.MyException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.RedisServerCommands;
@@ -537,6 +540,22 @@ public class RedisUtil {
         return stringList;
     }
 
+    /**
+     * 校验token
+     * @param token
+     * @return
+     */
+    public boolean checkToken(String token){
+        String redisToken = get(Dict.TOKEN);
+        //判断是否过时
+       if(!JwtTokenUtil.isExpiration(token)||Util.isNull(redisToken)){
+            throw new MyException(ErrorDict.TOKEN_TIMEOUT);
+        }
+        if(!token.equals(redisToken)){
+            throw new MyException(ErrorDict.LOGIN_AGAIN);
+        }
+        return true;
+    }
 
 
 }

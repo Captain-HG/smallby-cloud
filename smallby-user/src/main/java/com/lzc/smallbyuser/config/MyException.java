@@ -1,4 +1,4 @@
-package com.lzc.smallbyservice.config;
+package com.lzc.smallbyuser.config;
 
 
 /**
@@ -55,24 +55,6 @@ public class MyException extends RuntimeException {
 //        super(t);
 //        this.errorCode = BizErrorCodeEnum.UNSPECIFIED;
 //    }
-
-    /**
-     * 构造通用异常
-     * @param errorCode 错误码
-     * @param detailedMessage 详细描述
-     */
-    public MyException(final ErrorCode errorCode, final String detailedMessage) {
-        super(detailedMessage);
-        this.errorCode = errorCode;
-    }
-    /**
-     * 构造通用异常
-     * @param errorCode 错误码
-     */
-    public MyException(final ErrorCode errorCode) {
-        super(errorCode.getDescription());
-        this.errorCode = errorCode;
-    }
     /**
      * 系统异常提示
      * @param
@@ -91,6 +73,25 @@ public class MyException extends RuntimeException {
             }
         };
     }
+
+    /**
+     * 构造通用异常
+     * @param errorCode 错误码
+     * @param detailedMessage 详细描述
+     */
+    public MyException(final ErrorCode errorCode, final String detailedMessage) {
+        super(detailedMessage);
+        this.errorCode = errorCode;
+    }
+    /**
+     * 构造通用异常
+     * @param errorCode 错误码
+     */
+    public MyException(final ErrorCode errorCode) {
+        super(errorCode.getDescription());
+        this.errorCode = errorCode;
+    }
+
 
 //    /**
 //     * 构造通用异常
