@@ -22,4 +22,10 @@ public interface UserMapper extends IBaseMapper<User> {
      */
     Map selectByWxId(Map map);
 
+    /**
+     * 唯一索引键查询
+     * @param map
+     * @return
+     */
+    Map selectByUnique(Map map);
 }

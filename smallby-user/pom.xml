@@ -26,15 +26,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.boot</groupId>-->
-        <!--            <artifactId>spring-boot-starter-web</artifactId>-->
-        <!--        </dependency>-->
-        <!--兼容gateway的web-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-webflux</artifactId>-->
-<!--        </dependency>-->
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-web</artifactId>
+                </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -69,11 +65,7 @@
             <artifactId>jjwt</artifactId>
             <version>0.9.0</version>
         </dependency>
-        <!-- gateway-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway</artifactId>
-        </dependency>
+
         <!--Hystrix 依赖 主要是用  @HystrixCommand-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

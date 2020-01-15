@@ -42,4 +42,12 @@ public class Dict {
      * token
      */
     public static final String TOKEN = "token";
+    /**
+     * 注册
+     */
+    public static final String REGISTER = "register";
+    /**
+     * 手机号
+     */
+    public static final String PHONE = "phone";
 }

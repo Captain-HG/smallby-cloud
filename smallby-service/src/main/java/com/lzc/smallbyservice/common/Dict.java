@@ -34,4 +34,8 @@ public class Dict {
      * 微服务名
      */
     public static final String APPNAME = "appName";
+    /**
+     * 手机号
+     */
+    public static final String PHONE = "phone";
 }

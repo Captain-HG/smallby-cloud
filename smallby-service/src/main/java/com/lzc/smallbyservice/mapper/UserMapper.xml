@@ -33,14 +33,29 @@
   </resultMap>
 
   <select id="selectByPhoneAndPwd" resultMap="loginMap">
-   select u_id,u_id,vx_id,status,create_time,phone,update_time,login_time
+   select u_id,vx_id,status,create_time,phone,update_time,login_time
    from user
    where phone=#{phone} and password={password}
   </select>
 
   <select id="selectByWxId" resultMap="loginMap">
-   select u_id,u_id,vx_id,status,create_time,phone,update_time,login_time
+   select u_id,vx_id,status,create_time,phone,update_time,login_time
    from user
    where vx_id=#{vxId}
+  </select>
+
+  <select id="selectByUnique"  resultMap="loginMap">
+    select  u_id,u_id,vx_id,status,create_time,phone,update_time,login_time
+    from user
+    where  1=1
+    <if test="vxId!=null and vxId!=''">
+      and vx_id=#{vxId}
+    </if>
+    <if test="phone!=null and phone!=''">
+      and phone=#{phone}
+    </if>
+    <if test="uId!=null and uId!=''">
+      and u_id=#{uId}
+    </if>
   </select>
 </mapper>

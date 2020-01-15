@@ -1,6 +1,6 @@
-package com.lzc.smallbyservice.vo;
+package com.lzc.smallbyuser.common;
 
-import com.lzc.smallbyservice.config.ErrorCode;
+import com.lzc.smallbyuser.config.ErrorCode;
 
 /**
  * @author 水银队长

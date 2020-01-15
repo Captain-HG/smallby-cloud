@@ -2,11 +2,11 @@ package com.lzc.smallbyservice.controller;
 
 import com.lzc.smallbyservice.common.Constants;
 import com.lzc.smallbyservice.common.Dict;
-import com.lzc.smallbyservice.config.ErrorCode;
+import com.lzc.smallbyservice.common.ErrorDict;
 import com.lzc.smallbyservice.config.MyException;
 import com.lzc.smallbyservice.service.UserService;
 import com.lzc.smallbyservice.utils.Util;
-import com.lzc.smallbyservice.vo.ErrCodeEn;
+import com.lzc.smallbyservice.common.ErrCodeEn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +40,9 @@ public class UserController {
      */
    @RequestMapping("/login")
    public String  userLogin(@RequestBody Map map) {
+       if(Util.isNull(map)){
+           throw new MyException(ErrorDict.PARAMS_REQURIED);
+       }
        String channel = (String) map.get(Dict.CHANNEL);
        Map queryMap = new HashMap();
 
@@ -52,7 +55,7 @@ public class UserController {
                     * 为空时需要注册手机号
                     */
                    if (Util.isNull(result)) {
-                       return "注册手机号";
+                       return "register";
                    } else {
                        return "success";
                    }
@@ -63,6 +66,25 @@ public class UserController {
 
    }
 
-
+    /**
+     * 用户注册
+     * @param map
+     * @return
+     */
+   @RequestMapping("/register")
+   public String  userRegister(@RequestBody Map map) {
+       if(Util.isNull(map)){
+           throw new MyException(ErrorDict.PARAMS_REQURIED);
+       }
+       String channel = (String) map.get(Dict.CHANNEL);
+       Map queryMap = new HashMap();
+       //微信渠道
+       if(Constants.LOGINCHANEL_WX.equals(channel)){
+           if(Util.isNull(map.get(Dict.WXID))){
+               throw new MyException(ErrorDict.PARAMS_REQURIED);
+           }
+           userService.register(map);
+       }
+   }
 
 }

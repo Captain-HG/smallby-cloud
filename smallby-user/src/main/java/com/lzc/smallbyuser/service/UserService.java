@@ -6,6 +6,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.Map;
+
 /**
  * FeignClient的value对应的是service的地址
  */
@@ -16,5 +18,21 @@ public interface UserService {
      * @return
      */
     @RequestMapping(value="/user/test01",method = RequestMethod.POST)
-    public String test01();
+    String test01();
+
+    /**
+     * 登录
+     * @param map
+     * @return
+     */
+    @RequestMapping(value = "/user/login",method = RequestMethod.POST)
+    String vxlogin(Map map);
+
+    /**
+     * 注册
+     * @param map
+     * @return
+     */
+    @RequestMapping(value = "/user/register",method = RequestMethod.POST)
+    String register(Map map);
 }

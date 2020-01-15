@@ -34,4 +34,10 @@ public interface UserService {
      * @param user
      */
     void updateUser(User user);
+
+    /**
+     * 注册
+     * @param map
+     */
+    void register(Map map);
 }
