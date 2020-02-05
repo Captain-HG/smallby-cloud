@@ -93,4 +93,9 @@ public class JwtTokenUtil {
                 .parseClaimsJws(token)
                 .getBody();
     }
+
+    public static void main(String[] args) {
+        String token = generateToken("token", 60);
+        System.out.println(token);
+    }
 }

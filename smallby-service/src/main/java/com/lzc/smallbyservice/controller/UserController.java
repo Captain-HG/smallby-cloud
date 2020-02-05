@@ -85,6 +85,7 @@ public class UserController {
            }
            userService.register(map);
        }
+       return "success";
    }
 
 }

@@ -21,4 +21,9 @@ public class UserHystrix implements UserService {
     public String vxlogin(Map map) {
         return null;
     }
+
+    @Override
+    public String register(Map map) {
+        return null;
+    }
 }

@@ -6,8 +6,11 @@ import com.lzc.smallbyuser.common.ErrCodeEn;
 import com.lzc.smallbyuser.common.ErrorDict;
 import com.lzc.smallbyuser.config.MyException;
 import com.lzc.smallbyuser.service.UserService;
+import com.lzc.smallbyuser.utils.JwtTokenUtil;
+import com.lzc.smallbyuser.utils.RedisUtil;
 import com.lzc.smallbyuser.utils.Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +27,12 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private RedisUtil redisUtil;
+    @Value("${jwt.subject.data.login}")
+    private String jwtSubject;
+    @Value("${jwt.token.time}")
+    private int jwtTime;
     /**
      * 登录
      * @param map
@@ -45,6 +53,8 @@ public class UserController {
             throw new MyException(ErrCodeEn.E_500);
         }
         else {
+            //保存会话token
+            redisUtil.setExpire(Dict.TOKEN, JwtTokenUtil.generateToken(jwtSubject,jwtTime),jwtTime);
             return "success";
         }
     }
