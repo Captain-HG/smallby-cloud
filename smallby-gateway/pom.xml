@@ -48,6 +48,13 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
+            <version>2.0.3.RELEASE</version>
+        </dependency>
+        <!-- gateway core-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-gateway-core</artifactId>
+            <version>2.0.3.RELEASE</version>
         </dependency>
         <!--redis-->
         <dependency>
@@ -59,6 +66,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+
     </dependencies>
     <dependencyManagement>
         <dependencies>

@@ -77,6 +77,13 @@
             <version>2.5</version>
             <scope>compile</scope>
         </dependency>
+        <!-- zipkin服务跟踪-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
+
+
     </dependencies>
     <dependencyManagement>
         <dependencies>

@@ -35,4 +35,8 @@ public class Constants {
      *订单状态-取消
      */
     public static final String SMORDERSTATUS_2="2";
+    /**
+     * 响应码
+     */
+    public static final String RSPCODE_200 = "200";
 }

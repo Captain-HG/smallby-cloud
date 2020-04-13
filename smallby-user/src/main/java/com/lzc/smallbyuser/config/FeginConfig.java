@@ -2,10 +2,12 @@ package com.lzc.smallbyuser.config;
 
 
 import com.lzc.smallbyuser.common.Dict;
+import com.lzc.smallbyuser.utils.RedisUtil;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -25,6 +27,8 @@ public class FeginConfig implements RequestInterceptor {
     private final Logger log= LoggerFactory.getLogger(FeginConfig.class);
     @Value("${spring.application.name}")
     private String appName;
+    @Autowired
+    private RedisUtil redisUtil;
 
     @Override
     public void apply(RequestTemplate requestTemplate) {
@@ -39,7 +43,10 @@ public class FeginConfig implements RequestInterceptor {
                 requestTemplate.header(name, values);
             }
         }
+        //添加请求服务名
         requestTemplate.header(Dict.APPNAME, appName);
+        //添加token
+        requestTemplate.header(Dict.TOKEN, redisUtil.get(Dict.TOKEN));
         Enumeration<String> bodyNames = request.getParameterNames();
         StringBuffer body =new StringBuffer();
         if (bodyNames != null) {

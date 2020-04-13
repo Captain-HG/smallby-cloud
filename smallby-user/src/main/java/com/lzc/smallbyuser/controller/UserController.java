@@ -9,12 +9,14 @@ import com.lzc.smallbyuser.service.UserService;
 import com.lzc.smallbyuser.utils.JwtTokenUtil;
 import com.lzc.smallbyuser.utils.RedisUtil;
 import com.lzc.smallbyuser.utils.Util;
+import com.lzc.smallbyuser.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -29,17 +31,15 @@ public class UserController {
     private UserService userService;
     @Autowired
     private RedisUtil redisUtil;
-    @Value("${jwt.subject.data.login}")
-    private String jwtSubject;
-    @Value("${jwt.token.time}")
-    private int jwtTime;
+    @Value("${redis.set.time}")
+    private Long redisSetTime;
     /**
      * 登录
      * @param map
      * @return
      */
     @RequestMapping("/login")
-    public String userLogin(@RequestBody Map map) {
+    public ResultVO userLogin(@RequestBody Map map) {
         if(Util.isNull(map)||Util.isNull(map.get(Dict.WXID))){
             throw new MyException(ErrorDict.PARAMS_REQURIED);
         }
@@ -53,12 +53,23 @@ public class UserController {
             throw new MyException(ErrCodeEn.E_500);
         }
         else {
-            //保存会话token
-            redisUtil.setExpire(Dict.TOKEN, JwtTokenUtil.generateToken(jwtSubject,jwtTime),jwtTime);
-            return "success";
+            String token = JwtTokenUtil.generateToken("login", 1);
+            redisUtil.setExpire(Dict.TOKEN,token, redisSetTime);
+            ResultVO resultVO = new ResultVO<>();
+            resultVO.setCode(Constants.RSPCODE_200);
+            resultVO.setMessage("success");
+            Map hashMap = new HashMap();
+            hashMap.put(Dict.TOKEN,token);
+            resultVO.setData(hashMap);
+            return resultVO;
         }
     }
 
+    /**
+     * 注册
+     * @param map
+     * @return
+     */
     @RequestMapping("/register")
     public String register(@RequestBody Map map){
         if(Util.isNull(map)|| Util.isNull(map.get(Dict.WXID))|| Util.isNull(map.get(Dict.PHONE))){

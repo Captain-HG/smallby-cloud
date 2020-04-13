@@ -58,13 +58,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void register(Map map) {
-       Map queryMap = new HashMap();
-       queryMap.put(Dict.PHONE, map.get(Dict.PHONE));
-       Map result = userMapper.selectByUnique(queryMap);
-       //改手机号已被占用
+       Map result = userMapper.selectByUnique(map);
+       //用户信息已存在
        if(!Util.isNull(result)){
            throw new MyException(ErrorDict.PHONE_EXIST);
        }
 
+        User user = new User();
+       user.setuId(new IdWorker().nextId());
+       user.setVxId((String)map.get(Dict.WXID));
+       user.setuName((String) map.get(Dict.WXID));
+       user.setCreateTime(DateKit.getCurrentUnixTime());
+       user.setPhone((String) map.get(Dict.PHONE));
+       user.setChannel((String) map.get(Dict.CHANNEL));
+       user.setStatus(Constants.USERSTATUS_0);
+       userMapper.insert(user);
     }
 }

@@ -1,6 +1,8 @@
 package com.lzc.smallbygateway.config;
 
 
+
+
 import com.lzc.smallbygateway.common.Dict;
 import com.lzc.smallbygateway.common.ErrorDict;
 import com.lzc.smallbygateway.utils.RedisUtil;
@@ -41,8 +43,9 @@ public class JwtTokenFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         String url = exchange.getRequest().getURI().getPath();
+
         //不需要登录访问
-        if (checkLoginUrl(url)) {
+        if (checkLoginUrl(url)){
             return chain.filter(exchange);
         }
 
@@ -59,6 +62,8 @@ public class JwtTokenFilter implements GlobalFilter, Ordered {
         return null;
     }
 
+
+
     @Override
     public int getOrder() {
         return -100;
@@ -70,12 +75,23 @@ public class JwtTokenFilter implements GlobalFilter, Ordered {
      * @param url
      * @return
      */
-    private final boolean checkLoginUrl(String url) {
+    private  final boolean checkLoginUrl(String url) {
         String[] urlS = skipAuthUrls.split(",");
         if (!Util.isNull(url) && Arrays.asList(urlS).contains(url)) {
             return true;
         }
         return false;
+    }
+
+    /**
+     * 截取调用的controller名
+     * @param url
+     * @return
+     */
+    private  String subUrl(String url) {
+        String s = url.substring(1, url.length());
+        int i = s.indexOf("/");
+       return s.substring(i, s.length());
     }
 
 }

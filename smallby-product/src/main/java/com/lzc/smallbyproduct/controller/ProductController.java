@@ -19,6 +19,7 @@ public class ProductController {
     ProductService productService;
     @RequestMapping("/getAll")
     public List getProductAll(){
+        System.out.println("产品全查");
         return productService.getProductAll();
     }
 }

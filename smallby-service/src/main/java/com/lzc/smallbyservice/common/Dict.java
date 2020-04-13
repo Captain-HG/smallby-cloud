@@ -38,4 +38,8 @@ public class Dict {
      * 手机号
      */
     public static final String PHONE = "phone";
+    /**
+     * token
+     */
+    public static final String TOKEN = "token";
 }
